@@ -14,12 +14,17 @@ class Board:
                 return r
         return None
 
+    def is_col_full(self, col):
+        if not 0 <= col < COLS:
+            return True
+        return self.grid[0][col] != "."
+
     def full(self):
         return all(self.grid[0][c] != "." for c in range(COLS))
 
     def winner(self, token):
 
-        directions = [(0, 1), (1, 0)]
+        directions = [(0, 1), (1, 0), (1, 1), (1, -1)]
         for r in range(ROWS):
             for c in range(COLS):
                 if self.grid[r][c] != token:
